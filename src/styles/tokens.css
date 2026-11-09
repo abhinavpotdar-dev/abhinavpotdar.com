@@ -1,0 +1,51 @@
+/* Central design tokens — adjust these values to restyle the entire starter. */
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color-scheme: dark;
+  --bg: #090b16;
+  --surface: #121522;
+  --surface-2: #1a1c2b;
+  --surface-3: #292337;
+  --text: #f8f2e7;
+  --muted: #b5b2b4;
+  --subtle: #85838e;
+  --line: rgba(255, 255, 255, .10);
+  --accent: #e9bd70;
+  --accent-2: #ffe0a0;
+  --accent-ink: #24170b;
+  --blue: #d6a65c;
+  --radius-lg: 1.25rem;
+  --radius-md: .85rem;
+  --content-max: 1240px;
+  --gutter: clamp(1.125rem, 4vw, 3rem);
+  --space-section: clamp(4.5rem, 9vw, 8rem);
+  --text-xs: clamp(.7rem, .67rem + .12vw, .78rem);
+  --text-sm: clamp(.82rem, .78rem + .16vw, .94rem);
+  --text-base: clamp(.94rem, .9rem + .2vw, 1.06rem);
+  --text-lg: clamp(1.08rem, 1rem + .45vw, 1.35rem);
+  --text-xl: clamp(1.35rem, 1.15rem + 1vw, 2rem);
+  --text-display: clamp(3.15rem, 7.1vw, 6.8rem);
+  --text-section: clamp(2.15rem, 4.5vw, 4.1rem);
+}
+.theme-light {
+  color-scheme: light;
+  --bg: #f5f7f5;
+  --surface: #ffffff;
+  --surface-2: #edf2ed;
+  --surface-3: #e1eae0;
+  --text: #172219;
+  --muted: #536457;
+  --subtle: #748477;
+  --line: rgba(35, 61, 39, .14);
+  --accent: #5d922f;
+  --accent-2: #7bab4c;
+  --accent-ink: #ffffff;
+  --blue: #326eaf;
+}
+@media (max-width: 520px) {
+  :root {
+    --text-display: clamp(2.75rem, 12.5vw, 4.25rem);
+    --text-section: clamp(1.9rem, 8vw, 2.8rem);
+    --space-section: clamp(3.75rem, 12vw, 4.5rem);
+  }
+}

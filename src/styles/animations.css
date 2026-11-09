@@ -1,0 +1,8 @@
+@keyframes flame-flicker { 0% { transform: rotate(42deg) scale(.96); filter: brightness(.95); } 50% { transform: rotate(48deg) scale(1.05,.96); filter: brightness(1.12); } 100% { transform: rotate(43deg) scale(.98,1.04); filter: brightness(1); } }
+@keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 rgba(215,182,111,.35); } 50% { opacity: .65; box-shadow: 0 0 0 6px rgba(215,182,111,0); } }
+@keyframes progress-sweep { 0% { transform: translateX(-110%); } 100% { transform: translateX(290%); } }
+@keyframes firework-burst { 0% { transform: translate(-50%,-50%) scale(.08); opacity: 0; } 12% { opacity: .75; } 55% { opacity: .45; } 100% { transform: translate(-50%,-50%) scale(var(--scale)); opacity: 0; } }
+.fireworks { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.firework { position: absolute; left: var(--x); top: var(--y); width: 100px; height: 100px; transform: translate(-50%,-50%); animation: firework-burst 3.8s ease-out infinite; animation-delay: var(--delay); opacity: 0; }
+.firework i { position: absolute; left: 50%; top: 50%; width: 2px; height: 30px; border-radius: 100%; transform-origin: 50% 0; transform: rotate(calc(var(--ray) * 30deg)) translateY(-31px); background: linear-gradient(to bottom, rgba(255,232,175,.95), rgba(212,175,101,0)); box-shadow: 0 0 7px rgba(255,211,130,.6); }
+@media (prefers-reduced-motion: reduce) { .fireworks { display: none; } }

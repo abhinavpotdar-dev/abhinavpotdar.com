@@ -1,0 +1,439 @@
+/* Diwali visual layer built on the supplied AP responsive template tokens. */
+:root {
+  font-family: "DM Sans", sans-serif;
+  color-scheme: dark;
+  --bg: #090b16;
+  --surface: #121522;
+  --surface-2: #1a1c2b;
+  --text: #f8f2e7;
+  --muted: #b5b2b4;
+  --subtle: #85838e;
+  --line: rgba(255,255,255,.10);
+  --accent: #e9bd70;
+  --accent-2: #ffe0a0;
+  --accent-ink: #24170b;
+  --content-max: 1240px;
+  --gutter: clamp(1.125rem, 4vw, 3rem);
+  --text-display: clamp(3.2rem, 6.4vw, 5.7rem);
+}
+.app-shell {
+  position: relative;
+  min-height: 100svh;
+  overflow: clip;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  background:
+    radial-gradient(ellipse at 75% 36%, rgba(123,68,32,.17), transparent 34rem),
+    radial-gradient(ellipse at 8% 90%, rgba(72,46,103,.14), transparent 30rem),
+    linear-gradient(135deg,#090b16 0%,#10101d 52%,#0b0d18 100%);
+}
+.ambient { position:absolute; border-radius:50%; filter:blur(90px); pointer-events:none; opacity:.2; }
+.ambient-one { width:320px; height:320px; background:#9b5b28; right:8%; top:18%; }
+.ambient-two { width:260px; height:260px; background:#55417b; left:-130px; bottom:4%; }
+.star-field { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.star-field i { position:absolute; left:var(--x); top:var(--y); width:var(--size); height:var(--size); border-radius:50%; background:#f4cf8b; opacity:.35; animation:twinkle 3.8s ease-in-out infinite; animation-delay:var(--delay); }
+@keyframes twinkle { 0%,100%{opacity:.14;transform:scale(.7)} 50%{opacity:.85;transform:scale(1.5)} }
+
+.site-header {
+  height:86px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  position:relative;
+  z-index:2;
+}
+.brand { display:inline-flex; align-items:center; gap:.8rem; min-width:0; }
+.brand-mark { width:38px; height:38px; flex:0 0 auto; display:grid; place-items:center; border:1px solid rgba(233,189,112,.65); color:var(--accent); font:500 15px "Playfair Display",serif; letter-spacing:-.04em; }
+.brand-copy { display:grid; gap:.2rem; min-width:0; }
+.brand-copy strong { color:var(--text); font-size:.7rem; letter-spacing:.17em; }
+.brand-copy small { color:var(--subtle); font-size:.53rem; letter-spacing:.14em; }
+.header-note { color:var(--muted); font-size:.7rem; letter-spacing:.035em; display:flex; align-items:center; gap:.7rem; }
+.status-dot { width:6px; height:6px; flex:0 0 auto; border-radius:50%; background:var(--accent); box-shadow:0 0 10px var(--accent); }
+
+.hero {
+  min-height:min(610px,calc(100svh - 190px));
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  align-items:center;
+  gap:clamp(1.5rem,4vw,4rem);
+  padding-block:clamp(3.4rem,6.5vw,5rem) 3rem;
+  position:relative;
+  z-index:1;
+}
+.hero-copy { position:relative; z-index:2; min-width:0; }
+.eyebrow { display:flex; align-items:center; gap:.7rem; color:#c2a477; font-size:.58rem; font-weight:750; letter-spacing:.16em; line-height:1.6; margin-bottom:2rem; }
+.festival-label { display:inline-flex; align-items:center; gap:.55rem; padding:.58rem .85rem; border:1px solid rgba(233,189,112,.28); border-radius:30px; color:var(--accent-2); background:rgba(233,189,112,.045); font-size:.58rem; letter-spacing:.16em; margin-bottom:1.35rem; }
+.hero h1 { margin:0; color:#fff8ed; font:500 var(--text-display)/1.04 "Playfair Display",serif; letter-spacing:-.045em; text-wrap:balance; }
+.hero h1 em { color:var(--accent); font-weight:500; }
+.hero-description { max-width:440px; margin:1.45rem 0 1.8rem; color:var(--muted); font-size:clamp(.82rem,.78rem + .2vw,.94rem); line-height:1.9; text-wrap:pretty; }
+.signature { display:flex; align-items:center; gap:.9rem; }
+.signature-rule { width:34px; height:1px; flex:0 0 auto; background:var(--accent); }
+.signature small { display:block; color:#96939b; font-size:.65rem; margin-bottom:.3rem; }
+.signature strong { color:#f2d7a8; font:500 1.05rem "Playfair Display",serif; }
+
+.hero-visual { position:relative; min-width:0; width:100%; min-height:440px; display:grid; place-items:center; isolation:isolate; }
+.halo { position:absolute; width:min(72%,330px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(229,157,67,.19),rgba(161,88,38,.08) 45%,transparent 70%); filter:blur(7px); }
+.mandala-art {
+  position:absolute; z-index:0; width:min(100%,490px); height:auto; overflow:visible;
+  filter:drop-shadow(0 0 18px rgba(226,190,139,.035));
+  opacity:.92;
+}
+.halo { position:absolute; z-index:1; width:min(68%,320px); aspect-ratio:1; border-radius:50%; background:radial-gradient(circle,rgba(229,157,67,.20),rgba(161,88,38,.07) 48%,transparent 72%); filter:blur(8px); }
+.diya { position:relative; width:120px; height:100px; display:flex; justify-content:center; align-items:flex-end; z-index:3; }
+.main-diya { transform:translateY(25px) scale(1.35); }
+.bowl { position:absolute; bottom:8px; width:112px; height:44px; border-radius:10% 10% 55% 55%; background:linear-gradient(180deg,#e6ad61 0%,#9b4e24 48%,#57291d 100%); border:1px solid #f0c17b; box-shadow:inset 0 5px 8px rgba(255,231,176,.32),0 13px 24px rgba(0,0,0,.45); clip-path:ellipse(50% 50% at 50% 50%); }
+.bowl:after { content:""; position:absolute; left:8%; right:8%; top:1px; height:9px; border-radius:50%; background:linear-gradient(90deg,#5c2b1b,#f8d08b,#6d321d); }
+.oil { position:absolute; bottom:44px; width:73px; height:9px; border-radius:50%; background:#f6c36e; z-index:2; filter:blur(1px); }
+.wick { position:absolute; z-index:4; bottom:48px; width:2px; height:17px; background:#39231a; transform:rotate(18deg); }
+.flame { position:absolute; z-index:5; bottom:59px; width:22px; height:43px; border-radius:80% 10% 65% 55%; transform:rotate(2deg); background:radial-gradient(ellipse at 50% 72%,#fff8c9 0 13%,#ffd36e 35%,#ff8a32 67%,rgba(255,108,34,0) 75%); filter:drop-shadow(0 0 12px #ffae4f); animation:flicker 1.7s ease-in-out infinite alternate; }
+.glow { position:absolute; bottom:16px; width:155px; height:65px; border-radius:50%; background:rgba(255,154,58,.18); filter:blur(22px); }
+@keyframes flicker { from{transform:rotate(-4deg) scale(.96);opacity:.9} to{transform:rotate(4deg) scale(1.08);opacity:1} }
+.side-diya { position:absolute; transform:scale(.55); }
+.side-diya-left { left:5%; bottom:55px; }
+.side-diya-right { right:5%; bottom:75px; transform:scale(.45); }
+.spark { position:absolute; color:#f1c77f; text-shadow:0 0 13px rgba(255,191,102,.8); }
+.spark-a { top:16%; right:20%; font-size:25px; }
+.spark-b { top:31%; left:13%; font-size:21px; }
+.spark-c { bottom:20%; right:17%; font-size:34px; }
+.visual-caption { position:absolute; bottom:0; color:#a89b87; font-size:.5rem; letter-spacing:.2em; display:flex; align-items:center; gap:.65rem; white-space:nowrap; }
+.visual-caption span { width:20px; height:1px; background:#b78a4d; }
+
+.progress-card {
+  position:relative; z-index:1; display:flex; align-items:flex-start; gap:1.35rem;
+  margin:0 auto clamp(2rem,5vw,4rem); padding:clamp(1.3rem,2.5vw,2rem) clamp(1.2rem,3vw,2.4rem);
+  border:1px solid rgba(233,189,112,.23);
+  background:linear-gradient(110deg,rgba(255,255,255,.055),rgba(255,255,255,.018));
+  backdrop-filter:blur(12px); box-shadow:0 22px 65px rgba(0,0,0,.18);
+}
+.progress-icon { flex:0 0 46px; width:46px; height:46px; display:grid; place-items:center; border:1px solid rgba(233,189,112,.38); color:var(--accent); background:rgba(233,189,112,.07); }
+.progress-content { flex:1; min-width:0; max-width:690px; position:relative; z-index:1; }
+.progress-heading { display:flex; align-items:center; flex-wrap:wrap; gap:.7rem 1rem; margin:2px 0 12px; }
+.section-kicker { color:#c2a477; font-size:.58rem; letter-spacing:.2em; font-weight:750; }
+.progress-pill { display:inline-flex; align-items:center; gap:.45rem; border:1px solid rgba(214,166,92,.28); border-radius:20px; padding:.3rem .58rem; color:#e0bd86; font-size:.5rem; letter-spacing:.12em; white-space:nowrap; }
+.progress-pill i { width:5px; height:5px; border-radius:50%; background:#d6a65c; box-shadow:0 0 8px #d6a65c; }
+.progress-content h2 { margin:0 0 .65rem; color:#f8eddb; font:500 clamp(1.35rem,2.2vw,1.8rem)/1.25 "Playfair Display",serif; text-wrap:balance; }
+.progress-content p { max-width:640px; margin:0 0 1.2rem; color:#aaa7ad; font-size:clamp(.72rem,.7rem + .12vw,.82rem); line-height:1.8; }
+.progress-track { width:100%; max-width:500px; height:2px; background:rgba(255,255,255,.1); overflow:hidden; }
+.progress-track span { display:block; width:38%; height:100%; background:linear-gradient(90deg,#9a693b,#f0c77f); box-shadow:0 0 12px rgba(240,199,127,.4); }
+.progress-foot { display:flex; justify-content:space-between; gap:1rem; max-width:500px; margin-top:.5rem; color:#85838d; font-size:.56rem; }
+.progress-decoration { color:rgba(233,189,112,.12); align-self:center; margin:0 1.2rem 0 auto; flex:0 0 auto; }
+.site-footer { min-height:70px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem 1.5rem; border-top:1px solid var(--line); position:relative; z-index:1; color:#85838e; font-size:.63rem; }
+.site-link { display:inline-flex; align-items:center; gap:.5rem; color:#d5b47f; letter-spacing:.04em; }
+.footer-message { color:#aaa6a4; }
+.footer-message b { color:#d6a65c; margin-left:.25rem; }
+.copyright { color:#777681; }
+
+/* Template breakpoint system: 1100 / 900 / 760 / 540 / 360px. */
+@media (max-width: 1100px) {
+  .hero { gap:1.5rem; }
+  .hero-visual { min-height:400px; }
+  .mandala-art { width:min(100%,430px); }
+  .main-diya { transform:translateY(20px) scale(1.2); }
+  .progress-decoration { margin-right:.3rem; }
+}
+@media (max-width: 900px) {
+  .hero { min-height:0; grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr); padding-block:3.5rem 2.5rem; gap:1rem; }
+  .hero-visual { min-height:360px; }
+  .hero h1 { font-size:clamp(3rem,6.8vw,4.5rem); }
+  .eyebrow { font-size:.53rem; }
+  .progress-decoration { display:none; }
+}
+@media (max-width: 760px) {
+  .site-header { height:74px; }
+  .header-note { font-size:0; gap:0; }
+  .header-note .status-dot { width:7px; height:7px; }
+  .hero { grid-template-columns:minmax(0,1fr); padding-block:3.2rem 1.5rem; gap:.5rem; }
+  .hero-copy { max-width:620px; }
+  .hero h1 { font-size:clamp(3.4rem,10vw,5rem); }
+  .hero-description { max-width:540px; }
+  .hero-visual { width:min(100%,560px); min-height:350px; margin-inline:auto; }
+  .mandala-art { width:min(100%,410px); }
+  .main-diya { transform:translateY(15px) scale(1.08); }
+  .side-diya-left { left:8%; bottom:42px; transform:scale(.46); }
+  .side-diya-right { right:8%; bottom:58px; transform:scale(.4); }
+  .progress-card { margin-top:.25rem; }
+}
+@media (max-width: 540px) {
+  .site-header { height:68px; }
+  .brand { gap:.6rem; }
+  .brand-mark { width:34px; height:34px; font-size:.85rem; }
+  .brand-copy strong { font-size:.62rem; letter-spacing:.13em; }
+  .brand-copy small { font-size:.46rem; }
+  .hero { padding-top:2.35rem; padding-bottom:1rem; }
+  .eyebrow { max-width:100%; font-size:.49rem; letter-spacing:.11em; margin-bottom:1.45rem; }
+  .festival-label { font-size:.51rem; padding:.5rem .7rem; margin-bottom:1.1rem; }
+  .hero h1 { font-size:clamp(2.8rem,12.2vw,4.05rem); line-height:1.04; letter-spacing:-.05em; }
+  .hero-description { font-size:.82rem; line-height:1.75; margin:1.05rem 0 1.35rem; }
+  .signature strong { font-size:.98rem; }
+  .hero-visual { min-height:290px; margin-inline:-.4rem; }
+  .mandala-art { width:min(100%,340px); }
+  .main-diya { transform:translateY(12px) scale(.98); }
+  .side-diya-left { left:2%; bottom:30px; transform:scale(.38); }
+  .side-diya-right { right:2%; bottom:42px; transform:scale(.34); }
+  .spark-a { right:14%; top:14%; font-size:20px; }
+  .spark-b { left:9%; top:28%; font-size:17px; }
+  .visual-caption { font-size:.42rem; letter-spacing:.15em; }
+  .progress-card { padding:1.1rem; gap:.8rem; margin-bottom:1.6rem; }
+  .progress-icon { width:36px; height:36px; flex-basis:36px; }
+  .progress-heading { gap:.55rem; margin-bottom:.7rem; }
+  .section-kicker { font-size:.5rem; }
+  .progress-pill { font-size:.45rem; padding:.27rem .48rem; }
+  .progress-content h2 { font-size:1.3rem; }
+  .progress-content p { font-size:.7rem; line-height:1.7; }
+  .progress-foot { font-size:.49rem; }
+  .site-footer { padding-block:1rem; gap:.8rem; font-size:.57rem; }
+  .site-link { gap:.35rem; }
+  .footer-message { order:3; width:100%; }
+  .copyright { margin-left:auto; }
+}
+@media (max-width: 360px) {
+  .hero h1 { font-size:2.65rem; }
+  .hero-visual { min-height:260px; }
+  .progress-card { gap:.65rem; padding:.9rem; }
+  .progress-icon { width:32px; height:32px; flex-basis:32px; }
+  .progress-content h2 { font-size:1.16rem; }
+  .progress-content p { font-size:.67rem; }
+  .site-footer { align-items:flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .star-field i, .flame { animation:none !important; }
+}
+
+
+/* User-supplied hero artwork: the mandala and diya are kept together as one composition. */
+.hero-visual {
+  min-height: 0;
+  align-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.diwali-artwork {
+  display: block;
+  width: min(100%, 650px);
+  height: auto;
+  object-fit: contain;
+  border: 0;
+  filter: drop-shadow(0 18px 38px rgba(0, 0, 0, .22));
+}
+@media (max-width: 1100px) {
+  .hero-visual { min-height: 0; }
+  .diwali-artwork { width: min(100%, 560px); }
+}
+@media (max-width: 900px) {
+  .hero-visual { min-height: 0; }
+}
+@media (max-width: 760px) {
+  .hero-visual {
+    width: min(100%, 560px);
+    min-height: 0;
+    margin: .25rem auto 0;
+  }
+  .diwali-artwork { width: 100%; }
+}
+@media (max-width: 540px) {
+  .hero-visual { min-height: 0; margin-inline: -.35rem; }
+  .diwali-artwork { width: 100%; }
+}
+
+
+/* Integrated hero artwork: page-matched transparent layers, with mandala rotating clockwise. */
+.hero-visual {
+  min-height: 0;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(8px, 1.5vw, 18px);
+  overflow: visible;
+  background: transparent;
+}
+.mandala-stage {
+  position: relative;
+  width: min(100%, 590px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.mandala-rotating {
+  position: absolute;
+  inset: 2%;
+  width: 96%;
+  height: 96%;
+  object-fit: contain;
+  opacity: .94;
+  transform-origin: 50% 50%;
+  animation: mandala-clockwise 72s linear infinite;
+  will-change: transform;
+}
+.mandala-glow {
+  position: absolute;
+  width: 54%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,174,61,.19) 0%, rgba(222,125,35,.08) 44%, transparent 72%);
+  filter: blur(18px);
+  z-index: 1;
+}
+.diya-foreground {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: 57%;
+  height: auto;
+  object-fit: contain;
+  transform: translateY(10%);
+  filter: drop-shadow(0 12px 28px rgba(235, 139, 35, .22));
+}
+.visual-caption {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: #c99a55;
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-align: center;
+  white-space: nowrap;
+}
+.visual-caption span {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: #c99a55;
+}
+@keyframes mandala-clockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mandala-rotating { animation: none; }
+}
+@media (max-width: 1100px) {
+  .mandala-stage { width: min(100%, 530px); }
+}
+@media (max-width: 760px) {
+  .hero-visual { min-height: 0; width: min(100%, 520px); margin: 0 auto; }
+  .mandala-stage { width: min(100%, 480px); }
+  .diya-foreground { width: 59%; }
+}
+@media (max-width: 540px) {
+  .hero-visual { margin-inline: -.25rem; }
+  .mandala-stage { width: min(100%, 390px); }
+  .visual-caption { font-size: 8px; letter-spacing: .2em; gap: 9px; }
+  .visual-caption span { width: 18px; }
+}
+
+
+/* Final static artwork: use the supplied PNG as one composition, with no animation. */
+.hero-visual {
+  position: relative;
+  min-width: 0;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  isolation: auto;
+  overflow: visible;
+  background: transparent;
+}
+.diwali-artwork {
+  display: block;
+  width: min(100%, 650px);
+  height: auto;
+  object-fit: contain;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  filter: none;
+}
+*, *::before, *::after {
+  animation: none !important;
+  transition: none !important;
+}
+@media (max-width: 1100px) {
+  .hero-visual { min-height: 0; }
+  .diwali-artwork { width: min(100%, 560px); }
+}
+@media (max-width: 760px) {
+  .hero-visual {
+    width: min(100%, 520px);
+    min-height: 0;
+    margin: 0 auto;
+  }
+  .diwali-artwork { width: 100%; }
+}
+@media (max-width: 540px) {
+  .hero-visual { margin-inline: -.25rem; }
+  .diwali-artwork { width: 100%; }
+}
+
+
+/* Premium edge treatment: softly blend the PNG into the page instead of showing a hard rectangle. */
+.hero-visual {
+  position: relative;
+  isolation: isolate;
+}
+.hero-visual::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(224, 139, 45, 0.16) 0%,
+    rgba(181, 100, 34, 0.09) 38%,
+    rgba(28, 22, 31, 0.02) 66%,
+    transparent 78%
+  );
+  filter: blur(30px);
+  pointer-events: none;
+}
+.diwali-artwork {
+  position: relative;
+  z-index: 1;
+  border: 0 !important;
+  outline: 0;
+  border-radius: 0;
+  box-shadow: none !important;
+  /* Feather the dark image perimeter into the website's own background. */
+  -webkit-mask-image: radial-gradient(
+    ellipse 76% 76% at 50% 49%,
+    #000 56%,
+    rgba(0, 0, 0, 0.98) 66%,
+    rgba(0, 0, 0, 0.78) 77%,
+    rgba(0, 0, 0, 0.34) 88%,
+    transparent 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 76% 76% at 50% 49%,
+    #000 56%,
+    rgba(0, 0, 0, 0.98) 66%,
+    rgba(0, 0, 0, 0.78) 77%,
+    rgba(0, 0, 0, 0.34) 88%,
+    transparent 100%
+  );
+}
+@media (max-width: 760px) {
+  .diwali-artwork {
+    -webkit-mask-image: radial-gradient(
+      ellipse 79% 78% at 50% 49%,
+      #000 57%,
+      rgba(0, 0, 0, 0.96) 69%,
+      rgba(0, 0, 0, 0.68) 84%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 79% 78% at 50% 49%,
+      #000 57%,
+      rgba(0, 0, 0, 0.96) 69%,
+      rgba(0, 0, 0, 0.68) 84%,
+      transparent 100%
+    );
+  }
+}
