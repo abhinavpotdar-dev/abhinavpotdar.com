@@ -10,3 +10,6 @@ dist/
 Thumbs.db
 *.log
 .vscode/
+**/generated/prisma/
+# Prisma generated files
+apps/api/generated/
