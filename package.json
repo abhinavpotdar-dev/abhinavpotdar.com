@@ -1,15 +1,26 @@
+
 {
-  "name": "abhinavpotdar-diwali-responsive",
+  "name": "abhinavpotdar-com",
+  "version": "1.0.0",
   "private": true,
-  "version": "1.1.0",
   "type": "module",
-  "scripts": {"dev": "vite", "build": "vite build", "preview": "vite preview"},
-  "dependencies": {
-    "@vitejs/plugin-react": "^4.3.4",
-    "vite": "^6.0.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "lucide-react": "^0.468.0"
+  "workspaces": [
+    "apps/api",
+    "apps/web",
+    "packages/shared"
+  ],
+  "scripts": {
+    "dev:web": "npm run dev --workspace=web",
+    "build:web": "npm run build --workspace=web",
+    "preview:web": "npm run preview --workspace=web",
+    "dev:api": "npm run dev --workspace=api",
+    "start:api": "npm run start --workspace=api",
+    "build": "npm run build --workspace=web"
   },
-  "devDependencies": {}
+  "allowScripts": {
+    "@prisma/engines@7.10.1": true,
+    "prisma@7.10.1": true,
+    "esbuild@0.28.2": true,
+    "esbuild@0.25.12": true
+  }
 }
